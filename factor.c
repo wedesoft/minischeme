@@ -16,8 +16,14 @@ void dot(void) {
   printf("%d\n", stack[stack_index]);
 };
 
+void plus(void) {
+  stack_index--;
+  stack[stack_index - 1] += stack[stack_index];
+};
+
 int main(int argc, char *argv) {
   symbols[func_index] = "."; func[func_index++] = &dot;
+  symbols[func_index] = "+"; func[func_index++] = &plus;
   while (true) {
     int token = yylex();
     if (!token) break;
