@@ -12,8 +12,8 @@ YYSTYPE yylval;
 
 %%
 
-[0-9]+    { yylval.number = atoi(yytext); return NUMBER; }
-[^\t\r\n] { yylval.symbol = yytext; return SYMBOL; }
-[ \t\r\n] ;
+[-+]?[0-9]+ { yylval.number = atoi(yytext); return NUMBER; }
+[^\t\r\n]   { yylval.symbol = yytext; return SYMBOL; }
+[ \t\r\n]   ;
 
 %%
