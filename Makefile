@@ -1,7 +1,18 @@
-.SUFFIXES: .o .asm
+.SUFFIXES: .c .o .l
 
-hello: hello.o
-	ld -o $@ $<
+CC = gcc
+FLEX = flex
 
-.asm.o:
-	nasm -felf64 $<
+OBJECTS = factor.o lexer.o
+
+factor: $(OBJECTS)
+	$(CC) -o $@ $(OBJECTS)
+
+.c.o:
+	$(CC) -c $< -o $@
+
+.l.c:
+	$(FLEX) -o $@ $<
+
+clean:
+	rm -f factor lexer.c *.o
