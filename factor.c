@@ -1,45 +1,40 @@
+#include <ctype.h>
 #include <stdbool.h>
-#include <string.h>
 #include <stdio.h>
-#include "lexer.h"
 
+int ft_from_int(int c) {
+  return (c << 1) + 1;
+}
 
-int stack[1024];
-int stack_index = 0;
+int ft_to_int(int c) {
+  return (c - 1) >> 1;
+}
 
-char *symbols[1024];
-void (*func[1024])(void);
-int func_index = 0;
-
-void dot(void) {
-  stack_index--;
-  printf("%d\n", stack[stack_index]);
-};
-
-void plus(void) {
-  stack_index--;
-  stack[stack_index - 1] += stack[stack_index];
-};
-
-int main(int argc, char *argv) {
-  symbols[func_index] = "."; func[func_index++] = &dot;
-  symbols[func_index] = "+"; func[func_index++] = &plus;
+int token(void) {
   while (true) {
-    int token = yylex();
-    if (!token) break;
-    switch (token) {
-    case NUMBER:
-      stack[stack_index++] = yylval.number;
-      break;
-    case SYMBOL:
-      for (int i=0; i<func_index; i++) {
-        if (!strcmp(yylval.symbol, symbols[i])) {
-          func[i]();
-          break;
-        };
-      };
+    int c = getchar();
+    if (!isspace(c)) {
+      ungetc(c, stdin);
       break;
     };
+  };
+  int number = 0;
+  while (true) {
+    int c = getchar();
+    if (isdigit(c)) {
+      number = number * 10;
+      number += c - '0';
+    } else if (isspace(c)) {
+      ungetc(c, stdin);
+      return ft_from_int(number);
+    };
+  };
+}
+
+int main(void) {
+  while (true) {
+    int t = token();
+    printf("%d\n", ft_to_int(t));
   };
   return 0;
 }

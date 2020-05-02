@@ -1,18 +1,5 @@
-.SUFFIXES: .c .o .l
-
-CC = gcc
-FLEX = flex
-
-OBJECTS = factor.o lexer.o
-
-factor: $(OBJECTS)
-	$(CC) -o $@ $(OBJECTS)
+factor: factor.o
+	gcc -o $@ $<
 
 .c.o:
-	$(CC) -c $< -o $@
-
-.l.c:
-	$(FLEX) -o $@ $<
-
-clean:
-	rm -f factor lexer.c *.o
+	gcc -c -o $@ $<
