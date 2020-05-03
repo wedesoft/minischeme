@@ -3,13 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "tokenizer.h"
 
-
-enum token_type_t {
-  FALSE = 0,
-  UNDEFINED = 2,
-  TRUE = 20
-};
 
 typedef int FT;
 
@@ -25,7 +20,7 @@ bool is_number(FT c) {
   return c & 1;
 }
 
-FT token(void) {
+FT token2(void) {
   int result = UNDEFINED;
   while (true) {
     int c = getchar();
@@ -52,7 +47,7 @@ FT token(void) {
     };
     *p++ = c;
     count++;
-    if (isdigit(c) && (result == UNDEFINED || is_number(result))) {
+    if ((result == UNDEFINED || is_number(result) && isdigit(c))) {
       if (result == UNDEFINED)
         result = ft_from_int(0);
       result = ft_from_int(ft_to_int(result) * 10 + c - '0');
@@ -66,8 +61,9 @@ FT token(void) {
 
 int main(void) {
   while (true) {
-    FT t = token();
-    if (t == UNDEFINED) break;
+    FT t = token2();
+    if (t == UNDEFINED)
+      break;
     printf("%d\n", ft_to_int(t));
   };
   return 0;
