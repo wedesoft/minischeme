@@ -6,8 +6,6 @@
 #include "tokenizer.h"
 
 
-typedef int FT;
-
 FT ft_from_int(int c) {
   return (c << 1) + 1;
 }
