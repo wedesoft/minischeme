@@ -4,7 +4,7 @@
 
 
 static MunitResult test_empty_stream(const MunitParameter params[], void *data) {
-  FILE *f = fmemopen("", 1, "r");
+  FILE *f = fmemopen("", 0, "r");
   munit_assert_int(token(f), ==, UNDEFINED);
   fclose(f);
   return MUNIT_OK;

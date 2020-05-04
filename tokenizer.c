@@ -7,7 +7,7 @@ FT token(FILE *stream) {
   FT result = UNDEFINED;
   while (true) {
     int c = getc(stream);
-    if (c == 0 || c == EOF)
+    if (c == EOF)
       return result;
     if (!isspace(c)) {
       ungetc(c, stream);
@@ -20,7 +20,7 @@ FT token(FILE *stream) {
       if (result == UNDEFINED)
         result = ft_from_int(0);
       result = ft_from_int(ft_to_int(result) * 10 + c - '0');
-    } else if (isspace(c) || c == 0 || c == EOF) {
+    } else if (isspace(c) || c == EOF) {
       ungetc(c, stream);
       return result;
     };
