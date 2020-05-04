@@ -1,22 +1,10 @@
 #include <ctype.h>
-#include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "tokenizer.h"
+#include "type.h"
 
-
-FT ft_from_int(int c) {
-  return (c << 1) + 1;
-}
-
-int ft_to_int(FT c) {
-  return (c - 1) >> 1;
-}
-
-bool is_number(FT c) {
-  return c & 1;
-}
 
 FT token2(void) {
   int result = UNDEFINED;

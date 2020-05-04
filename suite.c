@@ -1,9 +1,11 @@
 #include "munit.h"
 
 
+extern MunitTest test_type[];
 extern MunitTest test_tokenizer[];
 
 static MunitSuite test_factor[] = {
+  {"/type"     , test_type     , NULL, 1, MUNIT_SUITE_OPTION_NONE},
   {"/tokenizer", test_tokenizer, NULL, 1, MUNIT_SUITE_OPTION_NONE},
   {NULL        , NULL          , NULL, 0, MUNIT_SUITE_OPTION_NONE}
 };

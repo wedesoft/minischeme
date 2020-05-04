@@ -2,15 +2,15 @@ ACLOCAL_AMFLAGS = -I m4
 
 bin_PROGRAMS = factor
 
-factor_SOURCES = factor.c tokenizer.c
+factor_SOURCES = factor.c type.c tokenizer.c
 factor_LDFLAGS =
 factor_LDADD =
 
-noinst_HEADERS = tokenizer.h
+noinst_HEADERS = tokenizer.h type.h
 
 check_PROGRAMS = suite
 
-suite_SOURCES = suite.c test_tokenizer.c tokenizer.c munit.c
+suite_SOURCES = suite.c test_type.c type.c test_tokenizer.c tokenizer.c munit.c
 suite_LDFLAGS =
 suite_LDADD =
 
