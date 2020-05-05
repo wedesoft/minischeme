@@ -1,5 +1,6 @@
 #pragma once
 #include <stdbool.h>
+#include <string.h>
 
 
 typedef long int SCM;
@@ -35,11 +36,11 @@ static inline bool is_number(SCM c) {
 }
 
 static inline SCM scm_from_string(const char *s) {
-  return (SCM)strdup(s); // TODO: register with garbage collector!
+  return (SCM)strdup(s); // TODO: register with garbage collector! Check alignment!
 }
 
 static inline SCM scm_from_stringn(const char *s, int n) {
-  return (SCM)strndup(s, n); // TODO: register with garbage collector!
+  return (SCM)strndup(s, n); // TODO: register with garbage collector! Check alignment!
 }
 
 static inline const char *scm_to_string(SCM s) {
