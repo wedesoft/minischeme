@@ -14,15 +14,27 @@ SCM token(FILE *stream) {
       break;
     };
   };
+  int n_buffer = 1;
+  char *buffer = malloc(1);
+  char *p = buffer;
+  int n = 0;
   while (true) {
     int c = getc(stream);
-    if ((result == UNDEFINED || is_number(result) && isdigit(c))) {
-      if (result == UNDEFINED)
-        result = scm_from_int(0);
-      result = scm_from_int(scm_to_int(result) * 10 + (c - '0'));
-    } else if (isspace(c) || c == EOF) {
+    if (isspace(c) || c == EOF) {
       ungetc(c, stream);
+      SCM result = scm_from_stringn(buffer, n);
+      free(buffer);
       return result;
+    } else {
+      if (n >= n_buffer) {
+        n_buffer *= 2;
+        char *buffer_new = malloc(n_buffer);
+        memcpy(buffer_new, buffer, n);
+        buffer = buffer_new;
+        p = buffer + n;
+      };
+      *p++ = c;
+      n++;
     };
   };
   return result;
