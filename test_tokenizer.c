@@ -12,9 +12,9 @@ static MunitResult test_empty_stream(const MunitParameter params[], void *data) 
 
 static MunitResult test_number(const MunitParameter params[], void *data) {
   FILE *f = fmemopen(" 123", 4, "r");
-  FT t = token(f);
+  SCM t = token(f);
   munit_assert_true(is_number(t));
-  munit_assert_int(ft_to_int(t), ==, 123);
+  munit_assert_int(scm_to_int(t), ==, 123);
   fclose(f);
   return MUNIT_OK;
 }

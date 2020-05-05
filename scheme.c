@@ -8,10 +8,10 @@
 
 int main(void) {
   while (true) {
-    FT t = token(stdin);
+    SCM t = token(stdin);
     if (t == UNDEFINED)
       break;
-    printf("%d\n", ft_to_int(t));
+    printf("%d\n", scm_to_int(t));
   };
   return 0;
 }

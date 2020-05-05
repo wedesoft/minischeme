@@ -1,10 +1,10 @@
 ACLOCAL_AMFLAGS = -I m4
 
-bin_PROGRAMS = factor
+bin_PROGRAMS = scheme
 
-factor_SOURCES = factor.c type.c tokenizer.c
-factor_LDFLAGS =
-factor_LDADD =
+scheme_SOURCES = scheme.c type.c tokenizer.c
+scheme_LDFLAGS =
+scheme_LDADD =
 
 noinst_HEADERS = tokenizer.h type.h
 

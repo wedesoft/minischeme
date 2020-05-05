@@ -2,7 +2,7 @@
 #include <stdbool.h>
 
 
-typedef int FT;
+typedef int SCM;
 
 enum token_type_t {
   FALSE = 0,
@@ -10,14 +10,14 @@ enum token_type_t {
   TRUE = 20
 };
 
-static inline FT ft_from_int(int c) {
+static inline SCM scm_from_int(int c) {
   return (c << 1) + 1;
 }
 
-static inline int ft_to_int(FT c) {
+static inline int scm_to_int(SCM c) {
   return (c - 1) >> 1;
 }
 
-static inline bool is_number(FT c) {
+static inline bool is_number(SCM c) {
   return c & 1;
 }

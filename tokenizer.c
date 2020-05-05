@@ -3,8 +3,8 @@
 #include "tokenizer.h"
 
 
-FT token(FILE *stream) {
-  FT result = UNDEFINED;
+SCM token(FILE *stream) {
+  SCM result = UNDEFINED;
   while (true) {
     int c = getc(stream);
     if (c == EOF)
@@ -18,8 +18,8 @@ FT token(FILE *stream) {
     int c = getc(stream);
     if ((result == UNDEFINED || is_number(result) && isdigit(c))) {
       if (result == UNDEFINED)
-        result = ft_from_int(0);
-      result = ft_from_int(ft_to_int(result) * 10 + c - '0');
+        result = scm_from_int(0);
+      result = scm_from_int(scm_to_int(result) * 10 + (c - '0'));
     } else if (isspace(c) || c == EOF) {
       ungetc(c, stream);
       return result;

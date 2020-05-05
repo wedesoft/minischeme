@@ -3,8 +3,8 @@
 
 
 static MunitResult test_integer(const MunitParameter params[], void *data) {
-  munit_assert_int(ft_to_int(ft_from_int(123)), ==, 123);
-  munit_assert_true(is_number(ft_from_int(123)));
+  munit_assert_int(scm_to_int(scm_from_int(123)), ==, 123);
+  munit_assert_true(is_number(scm_from_int(123)));
   munit_assert_false(is_number(FALSE));
   return MUNIT_OK;
 }

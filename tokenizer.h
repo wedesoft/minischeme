@@ -3,4 +3,4 @@
 #include "type.h"
 
 
-FT token(FILE *stream);
+SCM token(FILE *stream);
