@@ -11,7 +11,15 @@ int main(void) {
     SCM t = token(stdin);
     if (t == UNDEFINED)
       break;
-    printf("%d\n", scm_to_int(t));
+    if (is_number(t)) {
+      printf("%d\n", scm_to_int(t));
+    } else if (is_symbol(t)) {
+      printf("%s\n", scm_to_locale_symbol(t));
+    } else if (t == SCM_OPEN_PAREN) {
+      printf("(\n");
+    } else if (t == SCM_CLOSE_PAREN) {
+      printf(")\n");
+    };
   };
   return 0;
 }
