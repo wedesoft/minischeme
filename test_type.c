@@ -20,14 +20,14 @@ static MunitResult test_boolean(const MunitParameter params[], void *data) {
   return MUNIT_OK;
 }
 
-static MunitResult test_string(const MunitParameter params[], void *data) {
-  munit_assert_string_equal(scm_to_string(scm_from_string("test")), "test");
+static MunitResult test_symbol(const MunitParameter params[], void *data) {
+  munit_assert_string_equal(scm_to_locale_symbol(scm_from_locale_symbol("test")), "test");
   return MUNIT_OK;
 }
 
 MunitTest test_type[] = {
   {"/integer", test_integer, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL},
   {"/boolean", test_boolean, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL},
-  {"/string" , test_string , NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL},
+  {"/symbol" , test_symbol , NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL},
   {NULL      , NULL        , NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL}
 };

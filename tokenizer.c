@@ -23,7 +23,7 @@ SCM token(FILE *stream) {
     int c = getc(stream);
     if (isspace(c) || c == EOF) {
       ungetc(c, stream);
-      SCM result = scm_from_stringn(buffer, n);
+      SCM result = scm_from_locale_symboln(buffer, n);
       free(buffer);
       return result;
     } else {

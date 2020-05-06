@@ -13,8 +13,12 @@ static MunitResult test_empty_stream(const MunitParameter params[], void *data) 
 static MunitResult test_number(const MunitParameter params[], void *data) {
   FILE *f = fmemopen(" 123", 4, "r");
   SCM t = token(f);
-  munit_assert_string_equal(scm_to_string(t), "123");
+  munit_assert_string_equal(scm_to_locale_symbol(t), "123");
   fclose(f);
+  return MUNIT_OK;
+}
+
+static MunitResult test_brackets(const MunitParameter params[], void *data) {
   return MUNIT_OK;
 }
 
