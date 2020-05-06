@@ -16,16 +16,22 @@ SCM token(FILE *stream) {
     };
   };
   int n_buffer = 1;
-  char *buffer = malloc(1);
+  char *buffer = malloc(n_buffer);
   char *p = buffer;
   int n = 0;
   while (true) {
     int c = getc(stream);
-    if (isspace(c) || c == EOF) {
+    if (n > 0 && (isspace(c) || c == EOF || c == '(' || c == ')')) {
       ungetc(c, stream);
       SCM result = scm_from_locale_symboln(buffer, n);
       free(buffer);
       return result;
+    } else if (c == '(') {
+      free(buffer);
+      return SCM_OPEN_PAREN;
+    } else if (c == ')') {
+      free(buffer);
+      return SCM_CLOSE_PAREN;
     } else {
       if (n >= n_buffer) {
         n_buffer *= 2;

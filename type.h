@@ -6,9 +6,11 @@
 typedef long int SCM;
 
 enum token_type_t {
-  SCM_BOOL_F = 0,
-  UNDEFINED = 2,
-  SCM_BOOL_T = 20
+  SCM_BOOL_F      =  0x0,
+  UNDEFINED       =  0x2,
+  SCM_OPEN_PAREN  =  0x4,
+  SCM_CLOSE_PAREN =  0x6,
+  SCM_BOOL_T      = 0x14
 };
 
 static inline int scm_is_false(SCM b) {
@@ -24,11 +26,11 @@ static inline int scm_is_bool(SCM b) {
 }
 
 static inline SCM scm_from_int(int c) {
-  return (c << 1) + 1;
+  return (c << 1) | 1;
 }
 
 static inline int scm_to_int(SCM c) {
-  return (c - 1) >> 1;
+  return c >> 1;
 }
 
 static inline bool is_number(SCM c) {
@@ -45,4 +47,8 @@ static inline SCM scm_from_locale_symboln(const char *s, int n) {
 
 static inline const char *scm_to_locale_symbol(SCM s) {
   return (const char *)s;
+}
+
+static inline bool is_symbol(SCM s) {
+  return s > SCM_BOOL_T && (s & 1) == 0;
 }

@@ -22,6 +22,7 @@ static MunitResult test_boolean(const MunitParameter params[], void *data) {
 
 static MunitResult test_symbol(const MunitParameter params[], void *data) {
   munit_assert_string_equal(scm_to_locale_symbol(scm_from_locale_symbol("test")), "test");
+  munit_assert_true(is_symbol(scm_from_locale_symbol("test")));
   return MUNIT_OK;
 }
 
