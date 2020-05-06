@@ -37,6 +37,7 @@ SCM token(FILE *stream) {
         n_buffer *= 2;
         char *buffer_new = malloc(n_buffer);
         memcpy(buffer_new, buffer, n);
+        free(buffer);
         buffer = buffer_new;
         p = buffer + n;
       };
